@@ -14,6 +14,10 @@ while True:
     if userDir == 'q':
         break
 
+    if os.path.isfile(f"{userDir}/{userFile}") == True:
+        print("A file by the same name already exists,\nplease choose another file name.")
+        continue 
+    
     if os.path.isfile(userFile) == False and os.path.isdir(userDir) == False:
 
         os.makedirs(userDir)
@@ -29,3 +33,22 @@ while True:
         with open(filename, 'r') as r:
             data = r.read()
             print(f"Information saved to {userDir}/{userFile}: {data}")
+        
+        break
+
+    if os.path.isfile(userFile) == False and os.path.isdir(userDir) == True:
+
+        path=userDir
+     
+        userInfo = input("Please enter your name, address, and phone number separated with commas: ")
+
+        filename = os.path.join(path, userFile)
+
+        with open(filename,'w') as f:
+            json.dump(userInfo, f)
+        
+        with open(filename, 'r') as r:
+            data = r.read()
+            print(f"Information saved to {userDir}/{userFile}: {data}")
+
+        break
