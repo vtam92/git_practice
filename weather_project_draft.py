@@ -31,9 +31,17 @@ while True:
 		break
 	
 	else:
-		weather_data=api_address + location
-		json_data=requests.get(weather_data).json()
-		json_location=json_data['name']
+		try:
+			weather_data=api_address + location
+			json_data=requests.get(weather_data).json()
+			json_location=json_data['name']
+
+			get_weather()
+			get_temp()
 		
-		get_weather()
-		get_temp()
+		except KeyError:
+			print('Please check if input is correct and try again.')
+
+		except requests.exceptions.ConnectionError:
+			print('There is an issue establishing a connection to the server,'
+			'\nPlease ensure that you are connected to the Internet.')
