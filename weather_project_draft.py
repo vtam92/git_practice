@@ -27,7 +27,7 @@ while True:
 
 	location=input('Enter "q" to quit.\nEnter city name or zipcode: ')
 
-	if location=='q':
+	if location=='q' or location=='Q':
 		break
 	
 	else:
